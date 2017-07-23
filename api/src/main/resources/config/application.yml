@@ -1,0 +1,16 @@
+spring:
+    h2:
+        console:
+            enabled: true
+    jpa:
+        database: H2
+        show-sql: false
+        hibernate:
+            ddl-auto: update
+
+flyway:
+    locations: classpath:database
+
+server:
+    port: 8080
+    contextPath: /api
