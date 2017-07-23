@@ -18,6 +18,9 @@ public class PokemonDto {
     @NotNull
     private boolean favourite;
 
+    @Size(min = 4, max = 24)
+    private String evolution;
+
     private List<String> types;
 
     public PokemonDto() {
@@ -53,6 +56,14 @@ public class PokemonDto {
 
     public void setFavourite(boolean favourite) {
         this.favourite = favourite;
+    }
+
+    public String getEvolution() {
+        return evolution;
+    }
+
+    public void setEvolution(String evolution) {
+        this.evolution = evolution;
     }
 
     public List<String> getTypes() {

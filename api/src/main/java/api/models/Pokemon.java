@@ -27,6 +27,9 @@ public class Pokemon {
     @Column(nullable = false)
     private boolean favourite;
 
+    @Size(min = 4, max = 24)
+    private String evolution;
+
     @ManyToMany
     @JoinTable(name = "pokemon_has_types", joinColumns = { @JoinColumn(name = "pokemon_id") }, inverseJoinColumns = { @JoinColumn(name = "pokemon_types_id") })
     private List<PokemonType> types = new ArrayList<>();
@@ -64,6 +67,14 @@ public class Pokemon {
 
     public void setFavourite(boolean favourite) {
         this.favourite = favourite;
+    }
+
+    public String getEvolution() {
+        return evolution;
+    }
+
+    public void setEvolution(String evolution) {
+        this.evolution = evolution;
     }
 
     public List<PokemonType> getTypes() {

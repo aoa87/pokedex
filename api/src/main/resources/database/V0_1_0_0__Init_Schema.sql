@@ -7,6 +7,7 @@ CREATE TABLE pokemons (
     name VARCHAR(24) NOT NULL,
     description VARCHAR(255) NOT NULL,
     favourite BIT(1) NOT NULL,
+    evolution VARCHAR(24),
     PRIMARY KEY (id),
     CONSTRAINT UK_pokemon_name UNIQUE (name)
 );
