@@ -1,0 +1,18 @@
+.pokemon__list {
+  .pokemon__list__favorite {
+    color: #FFCC00;
+    &:hover {
+      cursor: pointer;
+      color: #B8B8B8;
+
+    }
+  }
+
+  .pokemon__list__no-favorite {
+    color: #B8B8B8;
+    &:hover {
+      cursor: pointer;
+      color: #FFCC00;
+    }
+  }
+}

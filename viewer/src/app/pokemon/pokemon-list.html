@@ -1,0 +1,104 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Pokémon List
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="row">
+                        <section class="col-xs-4">
+                            <div class="input-group">
+                                <input name="table_search" class="form-control pull-right" placeholder="Search" type="text" ng-model="$ctrl.search">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="col-xs-2">
+                            <a ng-click="$ctrl.openFormModal()" class="btn btn-primary">
+                                <i class="fa fa-basic fa-fw fa-plus"></i>Add Pokemon
+                            </a>
+                        </section>
+                        <section class="col-xs-2">
+                            <label class="control-label">Only favourites</label>
+                            <input type="checkbox" class="form-check-input" ng-model="$ctrl.favouriteCheckbox" ng-change="$ctrl.filterFavourites()"/>
+                        </section>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div ng-if="$ctrl.pokemons.length > 0">
+                        <div class="row">
+                            <section class="col-md-12 pokemon__list">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Favourite</th>
+                                                <th>Evolution</th>
+                                                <th>Types</th>
+                                                <th>Options</th>
+                                            </tr>
+                                            <tr ng-repeat="pokemon in filteredPokemons = ($ctrl.pokemons | filter: {name: $ctrl.search} | filter: {favourite: $ctrl.onlyFavourites})">
+                                                <td>
+                                                    <a href="#" ui-sref="pokemon.detail({id: pokemon.id})">
+                                                        {{pokemon.id}}
+                                                    </a>
+                                                </td>
+                                                <td>{{::pokemon.name}}</td>
+                                                <td>
+                                                    <i class="fa fa-basic fa-star-o pokemon__list__no-favorite" ng-click="$ctrl.toggleFavorite(pokemon)" ng-if="!pokemon.favourite"></i>
+                                                    <i class="fa fa-basic fa-star pokemon__list__favorite" ng-click="$ctrl.toggleFavorite(pokemon)" ng-if="pokemon.favourite"></i>
+                                                </td>
+                                                <td>{{::pokemon.evolution}}</td>
+                                                <td>
+                                                    <ul>
+                                                        <li ng-repeat="type in pokemon.types">{{type}}</li>
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <span class="dropdown">
+                                                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                            <i class="fa fa-basic fa-list-ul"></i>
+                                                            <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-left">
+                                                        <li class="dropdown-item">
+                                                            <a ng-click="$ctrl.openFormModal(pokemon.id)" class="nav">
+                                                                <i class="fa fa-basic fa-fw fa-pencil"></i> Edit
+                                                            </a>
+                                                        </li>
+                                                        <li class="dropdown-item">
+                                                            <a ng-click="$ctrl.deletePokemon(pokemon.id)" class="nav">
+                                                                <i class="fa fa-basic fa-fw fa-trash"></i> Delete
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div ng-if="$ctrl.pokemons.length == 0">
+                        <h3>There isn't any Pokemon yet :(</h3>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <pk-spinner ng-if="$ctrl.pokemons === null"></pk-spinner>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->

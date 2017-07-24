@@ -7,6 +7,7 @@ import uiRouter from 'angular-ui-router';
 import angularCookies from 'angular-cookies';
 import angularSanitize from 'angular-sanitize';
 import angularMessages from 'angular-messages';
+import angularResource from 'angular-resource';
 
 // internal modules
 import indexComponents from './index.components';
@@ -21,6 +22,7 @@ const App = angular.module(
             angularCookies,
             angularSanitize,
             angularMessages,
+            angularResource,
 
             // components
             indexComponents

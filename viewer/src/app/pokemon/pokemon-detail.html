@@ -1,0 +1,35 @@
+<section class="content-header">
+    <h1>
+        Pokemon Detail
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <h3 class="profile-username text-center">
+                        Name: {{$ctrl.pokemon.name}}
+                    </h3>
+                    <p class="text-muted text-center">
+                        <span>{{$ctrl.pokemon.description}}</span>
+                    </p>
+                    <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Favourite</b>
+                            <a ng-if="$ctrl.pokemon.favourite === true" class="label label-success pull-right"> Yes</a>
+                            <a ng-if="$ctrl.pokemon.favourite === false" class="label label-danger pull-right"> No</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Evolution</b> <a class="pull-right">{{$ctrl.pokemon.evolution}}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Types</b> <a class="pull-right">{{$ctrl.pokemon.types}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <pk-spinner ng-if="$ctrl.pokemon === null"></pk-spinner>
+            </div>
+        </div>
+    </div>
+</section>
