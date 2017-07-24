@@ -86,6 +86,10 @@ public class PokemonController {
             }
         }
 
+        if(pokemonDto.isFavourite() && pokemonService.findAllByFavourite(true).size() == 10) {
+            throw new BadValueParameterException("This pokemon can't be set as favourite. Maximum reached (10).");
+        }
+
         if(pokemonDto.getTypes() == null || pokemonDto.getTypes().size() == 0 || pokemonDto.getTypes().size() > 2) {
             throw new BadValueParameterException("A Pokemon must have at least one type and at maximum 2");
         }

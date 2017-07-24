@@ -81,6 +81,10 @@ public class PokemonService {
         return pokemonTypeMapper.entitiesListToDtosList(pokemonTypeRepository.findAll());
     }
 
+    public List<PokemonDto> findAllByFavourite(Boolean isFavourite) {
+        return pokemonMapper.entitiesListToDtosList(pokemonRepository.findAllByFavourite(isFavourite));
+    }
+
     @Transactional(readOnly = true)
     public PokemonType findTypeByTitle(String typeTitle) {
         return pokemonTypeRepository.findOneByTitle(typeTitle);
