@@ -45,16 +45,16 @@ module.exports = (_path) => {
                 exclude: [
                     path.resolve(_path, 'node_modules')
                 ],
-                loaders: [
-                    {
-                        loader: 'ng-annotate-loader'
-                    },
-                    {
-                        loader: 'babel-loader',
-                        query: {
-                            cacheDirectory: false
-                        }
-                    }]
+                loaders: [{
+                    loader: 'ng-annotate-loader'
+                },
+                {
+                    loader: 'babel-loader',
+                    query: {
+                        cacheDirectory: false
+                    }
+                }
+                ]
             }, {
                 test: /\.css$/,
                 loaders: [
@@ -87,6 +87,13 @@ module.exports = (_path) => {
             }]
         },
 
+        devServer: {
+            proxy: {
+                '/api': process.env.API_URL || 'http://localhost:8080'
+            },
+            port: 9000
+        },
+
         // load plugins
         plugins: [
             new webpack.NoEmitOnErrorsPlugin(),
@@ -98,7 +105,8 @@ module.exports = (_path) => {
                 'window.jquery': 'jquery'
             }),
             new webpack.DefinePlugin({
-                NODE_ENV: JSON.stringify(NODE_ENV)
+                NODE_ENV: JSON.stringify(NODE_ENV),
+                API_URL: JSON.stringify(process.env.API_URL)
             }),
             new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
             new webpack.optimize.AggressiveMergingPlugin({
